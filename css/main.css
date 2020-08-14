@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-sizing: border-box;
+
+    /*background: linear-gradient(to bottom, #34eb99, #3aeb34, #a8eb34); */
+    background: linear-gradient(to bottom, #091921, #091921);
+}
+
+body.light-mode {
+    background: linear-gradient(to bottom, #d1dae3, #d1dae3);
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.clock {
+    width: 300px;
+    height: 300px;
+    background-color: #ffffff;
+    background: #091921 url(../img/clock.png);
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    border: 4px solid #091921;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.05), 20px 20px 20px rgba(0, 0, 0, 0.3), inset -8px -8px 15px rgba(255, 255, 255, 0.05), inset 20px 20px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+body.light-mode .clock {
+    background: #d1dae3 url(../img/clock.png);
+    background-position: center;
+    background-size: contain;
+    border: 4px solid #d1dae3;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.5), 10px 10px 10px rgba(0, 0, 0, 0.1), inset -8px -8px 15px rgba(255, 255, 255, 0.5), inset 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.clock::after {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    z-index: 11;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+body.light-mode .clock::after {
+    background-color: #008eff;
+}
+
+.clock .hand {
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #000000;
+    z-index: 10;
+}
+
+.clock .hand.hour {
+    width: 10px;
+    height: 32%;
+    background-color: #ff0000;
+}
+
+.clock .hand.minute {
+    width: 7px;
+    height: 35%;
+    background-color: #ffffff;
+}
+
+body.light-mode .clock .hand.minute {
+    background-color: #091921;
+}
+
+.clock .hand.second {
+    width: 3px;
+    height: 37%;
+    background-color: blue;
+}
+
+.toggleClass {
+    position: absolute;
+    top: 30px;
+    right: 150px;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    border-radius: 50%;
+    background-color: #d1dae3;
+    color: #d1dae3;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease-in-out;
+}
+
+.toggleClass:hover {   
+    transform: scale(1.04);
+}
+
+.toggleClass::before {
+    content: "Light Mode";
+    position: absolute;
+    left: 25px;
+    white-space: nowrap;
+}
+
+body.light-mode .toggleClass {
+    background-color: #091921;
+    color: #091921;
+}
+
+body.light-mode .toggleClass::before {
+    content: "Dark Mode";
+}
